@@ -7,28 +7,34 @@ let grid = new Array(200)
 
 let x = 0
 let y  = 0
+let currPos = 0
+let endPos = 0
 let direction = 'N'
 
 for(let n = 0; n < letters.length; n++) {
-    console.log(x)
-    console.log(y)
+    // console.log(x)
+    // console.log(y)
     // console.log(grid)
     console.log('------------------------------')
-    console.log(direction)
-    console.log(letters[n])
-    console.log(numbers[n])
+    // console.log(direction)
+    // console.log(letters[n])
+    // console.log(numbers[n])
     console.log('------------------------------')
-
+    // currPos=x
     /////////North////////////
     if(direction == 'N' && letters[n] == "L"){
         if(!grid.includes(`${x} , ${y}`)){
-            grid[n] = `${x} , ${y}`
+            grid.push(`${x} , ${y}`)
         } else {
             console.log(" 11111111111111111111111")
             break
         }
         x-=parseInt(numbers[n])
         direction = 'W'
+        endPos=x
+        for(let k = currPos-1; k<endPos; k--){
+            grid.push(`${k} , ${y}`)
+        }
     }
     else if(direction == 'N' && letters[n] == "R") {
         if(!grid.includes(`${x} , ${y}`)){
@@ -39,6 +45,10 @@ for(let n = 0; n < letters.length; n++) {
         }
         x+=parseInt(numbers[n])
         direction = 'E'
+        endPos=x
+        for(let k = currPos+1; k<endPos; k++){
+            grid.push(`${k} , ${y}`)
+        }
     }
     /////////South////////////
     else if(direction == 'S' && letters[n] == "L"){
@@ -50,6 +60,10 @@ for(let n = 0; n < letters.length; n++) {
         }
         x+=parseInt(numbers[n])
         direction = 'E'
+        endPos=x
+        for(let k = currPos+1; k<endPos; k++){
+            grid.push(`${k} , ${y}`)
+        }
     }
     else if(direction == 'S' && letters[n] == "R") {
         if(!grid.includes(`${x} , ${y}`)){
@@ -60,6 +74,10 @@ for(let n = 0; n < letters.length; n++) {
         }
         x-=parseInt(numbers[n])
         direction = 'W'
+        endPos=x
+        for(let k = currPos-1; k<endPos; k--){
+            grid.push(`${k} , ${y}`)
+        }
     }
     /////////East////////////
     else if(direction == 'E' && letters[n] == "L"){
@@ -71,6 +89,10 @@ for(let n = 0; n < letters.length; n++) {
         }
         y+=parseInt(numbers[n])
         direction = 'N'
+        endPos=y
+        for(let k = currPos+1; k<endPos; k++){
+            grid.push(`${x} , ${k}`)
+        }
     }
     else if(direction == 'E' && letters[n] == "R") {
         if(!grid.includes(`${x} , ${y}`)){
@@ -81,6 +103,10 @@ for(let n = 0; n < letters.length; n++) {
         }
         y-=parseInt(numbers[n])
         direction = 'S'
+        endPos=y
+        for(let k = currPos-1; k<endPos; k--){
+            grid.push(`${x} , ${k}`)
+        }
     }
     /////////West////////////
     else if(direction == 'W' && letters[n] == "L"){
@@ -92,6 +118,10 @@ for(let n = 0; n < letters.length; n++) {
         }
         y-=parseInt(numbers[n])
         direction = 'S'
+        endPos=y
+        for(let k = currPos-1; k<endPos; k--){
+            grid.push(`${x} , ${k}`)
+        }
     }
     else if(direction == 'W' && letters[n] == "R") {
         if(!grid.includes(`${x} , ${y}`)){
@@ -102,6 +132,10 @@ for(let n = 0; n < letters.length; n++) {
         }
         y+=parseInt(numbers[n])
         direction = 'N'
+        endPos=y
+        for(let k = currPos+1; k<endPos; k++){
+            grid.push(`${x} , ${k}`)
+        }
     }
 }
 
